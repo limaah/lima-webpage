@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-current-lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anderson H. L. Lima – Computational Chemistry</title>
+  <meta name="description" content="Website profissional de Anderson H. L. Lima – pesquisa em química computacional, mecanismos enzimáticos e aprendizado de máquina." />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-alt: #f5f5f5;
+      --text: #111111;
+      --muted: #666666;
+      --border: #e0e0e0;
+      --accent: #000000;
+      --max-width: 960px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    nav a {
+      padding: 0.25rem 0;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav a:hover {
+      border-bottom-color: var(--text);
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+
+    .lang-btn {
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 0.2rem 0.6rem;
+      cursor: pointer;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .lang-btn.active {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3rem;
+    }
+
+    section {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      margin-bottom: 1.25rem;
+      color: var(--muted);
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.8rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .btn-primary, .btn-ghost {
+      border-radius: 999px;
+      padding: 0.55rem 1.2rem;
+      font-size: 0.9rem;
+      border: 1px solid #000;
+      cursor: pointer;
+      background: #000;
+      color: #fff;
+    }
+
+    .btn-ghost {
+      background: #fff;
+      color: #000;
+      border-color: #000;
+    }
+
+    .btn-ghost:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    .hero-photo {
+      justify-self: center;
+      width: 200px;
+      height: 200px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* Grid layouts */
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      background: #fff;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+    }
+
+    .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+
+    .pub-list {
+      list-style: none;
+      display: grid;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .pub-item span.year {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-right: 0.5rem;
+    }
+
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .person {
+      border-radius: 0.9rem;
+      border: 1px solid var(--border);
+      padding: 1rem 1.25rem;
+      font-size: 0.9rem;
+    }
+
+    .person-role {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .contact-list {
+      list-style: none;
+      font-size: 0.95rem;
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 1.25rem 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 720px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero-photo {
+        order: -1;
+      }
+
+      nav ul {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-inner">
+      <div class="logo">
+        <span data-lang="pt">Anderson H. L. Lima</span>
+        <span data-lang="en" class="hidden">Anderson H. L. Lima</span>
+      </div>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#home"><span data-lang="pt">Início</span><span data-lang="en" class="hidden">Home</span></a></li>
+          <li><a href="#research"><span data-lang="pt">Pesquisa</span><span data-lang="en" class="hidden">Research</span></a></li>
+          <li><a href="#people"><span data-lang="pt">Equipe</span><span data-lang="en" class="hidden">People</span></a></li>
+          <li><a href="#publications"><span data-lang="pt">Publicações</span><span data-lang="en" class="hidden">Publications</span></a></li>
+          <li><a href="#tutorials"><span data-lang="pt">Tutoriais</span><span data-lang="en" class="hidden">Tutorials</span></a></li>
+          <li><a href="#outreach"><span data-lang="pt">Divulgação</span><span data-lang="en" class="hidden">Outreach</span></a></li>
+          <li><a href="#contact"><span data-lang="pt">Contato</span><span data-lang="en" class="hidden">Contact</span></a></li>
+        </ul>
+      </nav>
+      <div class="lang-toggle" aria-label="Language selector">
+        <button class="lang-btn active" data-set-lang="pt">PT</button>
+        <button class="lang-btn" data-set-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero / Home -->
+    <section id="home" aria-labelledby="hero-title">
+      <div class="hero">
+        <div>
+          <h1 id="hero-title" class="hero-title">
+            <span data-lang="pt">Química computacional &amp; mecanismos enzimáticos</span>
+            <span data-lang="en" class="hidden">Computational chemistry &amp; enzyme mechanisms</span>
+          </h1>
+          <p class="hero-subtitle">
+            <span data-lang="pt">
+              Pesquisador em química computacional, estudando a relação entre estrutura, reatividade e evolução de enzimas ligadas à resistência a antibióticos e a arboviroses.
+            </span>
+            <span data-lang="en" class="hidden">
+              Computational chemistry researcher studying how enzyme structure, reactivity and evolution shape antibiotic resistance and arboviral infections.
+            </span>
+          </p>
+          <div class="hero-tags">
+            <span class="tag">QM/MM</span>
+            <span class="tag">Molecular Dynamics</span>
+            <span class="tag">Machine Learning</span>
+            <span class="tag">β-lactamases</span>
+            <span class="tag">NS2B/NS3</span>
+          </div>
+          <div class="hero-actions">
+            <a href="#research" class="btn-primary">
+              <span data-lang="pt">Ver linhas de pesquisa</span>
+              <span data-lang="en" class="hidden">Explore research</span>
+            </a>
+            <a href="#contact" class="btn-ghost">
+              <span data-lang="pt">Colaborações &amp; orientação</span>
+              <span data-lang="en" class="hidden">Collaborations &amp; supervision</span>
+            </a>
+            <p class="muted">
+              <span data-lang="pt">Universidade / Instituição na Amazônia Brasileira</span>
+              <span data-lang="en" class="hidden">University / Institution in the Brazilian Amazon</span>
+            </p>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <span data-lang="pt">Espaço para uma foto em preto e branco ou logotipo minimalista.</span>
+          <span data-lang="en" class="hidden">Space for a black-and-white photo or a minimal logo.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research -->
+    <section id="research">
+      <h2 class="section-title">
+        <span data-lang="pt">Pesquisa</span>
+        <span data-lang="en" class="hidden">Research</span>
+      </h2>
+      <div class="grid grid-2">
+        <article class="card">
+          <div class="label">Line 1</div>
+          <h3>
+            <span data-lang="pt">β-lactamases e resistência a antibióticos</span>
+            <span data-lang="en" class="hidden">β-lactamases and antibiotic resistance</span>
+          </h3>
+          <p>
+            <span data-lang="pt">
+              Integro simulações QM/MM, dinâmica molecular e análise de campos elétricos para entender como variantes de β-lactamases evoluem para degradar novos β-lactâmicos e escapar de inibidores.
+            </span>
+            <span data-lang="en" class="hidden">
+              I combine QM/MM, molecular dynamics and electric field analysis to understand how β-lactamase variants evolve to hydrolyse new β-lactams and escape inhibition.
+            </span>
+          </p>
+          <div class="pill-row">
+            <span class="pill">AmpC / CMY / Ent</span>
+            <span class="pill">Free energy profiles</span>
+            <span class="pill">Kinetic correlation</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="label">Line 2</div>
+          <h3>
+            <span data-lang="pt">Proteases NS2B/NS3 em arbovírus</span>
+            <span data-lang="en" class="hidden">NS2B/NS3 proteases in arboviruses</span>
+          </h3>
+          <p>
+            <span data-lang="pt">
+              Modelo complexos enzima–substrato e inibidores peptídicos/macrocíclicos de proteases NS2B/NS3 de Zika e outros arbovírus para apoiar o desenho de novos antivirais.
+            </span>
+            <span data-lang="en" class="hidden">
+              I model enzyme–substrate complexes and peptide/macrocyle inhibitors of NS2B/NS3 proteases from Zika and related arboviruses to guide antiviral design.
+            </span>
+          </p>
+          <div class="pill-row">
+            <span class="pill">MD &amp; free energy</span>
+            <span class="pill">Peptide inhibitors</span>
+            <span class="pill">Transferrin receptor</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="label">Line 3</div>
+          <h3>
+            <span data-lang="pt">Aprendizado de máquina para reatividade enzimática</span>
+            <span data-lang="en" class="hidden">Machine learning for enzymatic reactivity</span>
+          </h3>
+          <p>
+            <span data-lang="pt">
+              Desenvolvo modelos de ML que conectam descritores estruturais, dinâmicos e quânticos a parâmetros cinéticos (k<sub>cat</sub>, K<sub>M</sub>, K<sub>i</sub>), buscando previsões interpretáveis.
+            </span>
+            <span data-lang="en" class="hidden">
+              I develop ML models that link structural, dynamic and quantum descriptors to kinetic parameters (k<sub>cat</sub>, K<sub>M</sub>, K<sub>i</sub>), aiming for interpretable predictions.
+            </span>
+          </p>
+          <div class="pill-row">
+            <span class="pill">Descriptors</span>
+            <span class="pill">XGBoost / GNNs</span>
+            <span class="pill">Model interpretability</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="label">Line 4</div>
+          <h3>
+            <span data-lang="pt">Ferramentas computacionais e reprodutibilidade</span>
+            <span data-lang="en" class="hidden">Computational tools &amp; reproducibility</span>
+          </h3>
+          <p>
+            <span data-lang="pt">
+              Construo pipelines em Python, Jupyter e ambientes de alto desempenho para análises reprodutíveis de simulações, com ênfase em materiais abertos para ensino.
+            </span>
+            <span data-lang="en" class="hidden">
+              I build Python/Jupyter pipelines and HPC workflows for reproducible simulation analysis, with a strong focus on open teaching material.
+            </span>
+          </p>
+          <div class="pill-row">
+            <span class="pill">Jupyter</span>
+            <span class="pill">HPC</span>
+            <span class="pill">Open teaching</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- People -->
+    <section id="people">
+      <h2 class="section-title">
+        <span data-lang="pt">Equipe &amp; Colaborações</span>
+        <span data-lang="en" class="hidden">People &amp; Collaborations</span>
+      </h2>
+      <p class="muted" style="margin-bottom: 1.5rem;">
+        <span data-lang="pt">Esta seção pode ser atualizada anualmente com estudantes, orientandos e colaboradores.</span>
+        <span data-lang="en" class="hidden">You can update this section yearly with students, mentees and collaborators.</span>
+      </p>
+      <div class="people-grid">
+        <div class="person">
+          <div class="person-role">
+            <span data-lang="pt">Coordenação</span>
+            <span data-lang="en" class="hidden">Principal investigator</span>
+          </div>
+          <strong>Anderson H. L. Lima</strong>
+          <p>
+            <span data-lang="pt">Docente e pesquisador em química computacional e modelagem molecular.</span>
+            <span data-lang="en" class="hidden">Faculty member and researcher in computational chemistry and molecular modelling.</span>
+          </p>
+        </div>
+        <div class="person">
+          <div class="person-role">
+            <span data-lang="pt">Estudantes (exemplo)</span>
+            <span data-lang="en" class="hidden">Students (example)</span>
+          </div>
+          <p>
+            <span data-lang="pt">Inclua aqui estudantes de IC, mestrado, doutorado e TCC, com tema de projeto e ano.</span>
+            <span data-lang="en" class="hidden">List undergraduate, MSc and PhD students with their project topics and year.</span>
+          </p>
+        </div>
+        <div class="person">
+          <div class="person-role">
+            <span data-lang="pt">Colaboradores</span>
+            <span data-lang="en" class="hidden">Collaborators</span>
+          </div>
+          <p>
+            <span data-lang="pt">Use esta área para destacar colaborações nacionais e internacionais.</span>
+            <span data-lang="en" class="hidden">Use this area to highlight national and international collaborations.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications">
+      <h2 class="section-title">
+        <span data-lang="pt">Publicações selecionadas</span>
+        <span data-lang="en" class="hidden">Selected publications</span>
+      </h2>
+      <p class="muted" style="margin-bottom: 1rem;">
+        <span data-lang="pt">Substitua os exemplos abaixo pelos seus artigos reais. Inclua DOI ou link para a revista.</span>
+        <span data-lang="en" class="hidden">Replace the examples below with your actual papers. Include DOI or journal links.</span>
+      </p>
+      <ul class="pub-list">
+        <li class="pub-item">
+          <span class="year">2024</span>
+          <span>
+            <span data-lang="pt">Título do artigo sobre mecanismos de β-lactamases em periódicos de catálise. <em>Nome do Periódico</em>.</span>
+            <span data-lang="en" class="hidden">Title of the paper on β-lactamase mechanisms in catalysis journals. <em>Journal Name</em>.</span>
+          </span>
+        </li>
+        <li class="pub-item">
+          <span class="year">2023</span>
+          <span>
+            <span data-lang="pt">Estudo de dinâmica molecular de inibidores de protease NS2B/NS3. <em>Nome do Periódico</em>.</span>
+            <span data-lang="en" class="hidden">Molecular dynamics study of NS2B/NS3 protease inhibitors. <em>Journal Name</em>.</span>
+          </span>
+        </li>
+        <li class="pub-item">
+          <span class="year">2022</span>
+          <span>
+            <span data-lang="pt">Aplicações de aprendizado de máquina para predizer atividade enzimática. <em>Nome do Periódico</em>.</span>
+            <span data-lang="en" class="hidden">Machine learning applications to predict enzymatic activity. <em>Journal Name</em>.</span>
+          </span>
+        </li>
+      </ul>
+      <p class="muted" style="margin-top: 1rem;">
+        <span data-lang="pt">Para uma lista completa, inclua links para ORCID, Google Scholar ou CV Lattes.</span>
+        <span data-lang="en" class="hidden">For a complete list, add links to ORCID, Google Scholar or your CV.</span>
+      </p>
+    </section>
+
+    <!-- Tutorials -->
+    <section id="tutorials">
+      <h2 class="section-title">
+        <span data-lang="pt">Tutoriais &amp; material didático</span>
+        <span data-lang="en" class="hidden">Tutorials &amp; teaching material</span>
+      </h2>
+      <div class="grid grid-2">
+        <article class="card">
+          <div class="label">Notebook</div>
+          <h3>
+            <span data-lang="pt">Introdução à modelagem molecular em Python</span>
+            <span data-lang="en" class="hidden">Intro to molecular modelling in Python</span>
+          </h3>
+          <p>
+            <span data-lang="pt">Cole aqui links para notebooks Jupyter sobre RDKit, dinâmica molecular e análise de trajetórias.</span>
+            <span data-lang="en" class="hidden">Place links to Jupyter notebooks on RDKit, MD and trajectory analysis.</span>
+          </p>
+        </article>
+        <article class="card">
+          <div class="label">Course</div>
+          <h3>
+            <span data-lang="pt">Curso de mecanismos enzimáticos com QM/MM</span>
+            <span data-lang="en" class="hidden">Course on enzymatic mechanisms with QM/MM</span>
+          </h3>
+          <p>
+            <span data-lang="pt">Espaço para materiais de disciplinas, listas de exercícios e vídeos de aula.</span>
+            <span data-lang="en" class="hidden">Space for course material, problem sets and lecture videos.</span>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Outreach -->
+    <section id="outreach">
+      <h2 class="section-title">
+        <span data-lang="pt">Divulgação científica</span>
+        <span data-lang="en" class="hidden">Scientific outreach</span>
+      </h2>
+      <div class="grid grid-2">
+        <article class="card">
+          <div class="label">Public talk</div>
+          <h3>
+            <span data-lang="pt">Palestras e eventos</span>
+            <span data-lang="en" class="hidden">Talks and events</span>
+          </h3>
+          <p>
+            <span data-lang="pt">Divulgue aqui participações em Pint of Science, feiras de ciência, semanas acadêmicas e outras atividades abertas ao público.</span>
+            <span data-lang="en" class="hidden">Showcase Pint of Science talks, science fairs and other public-facing activities.</span>
+          </p>
+        </article>
+        <article class="card">
+          <div class="label">Project</div>
+          <h3>
+            <span data-lang="pt">Ciência na Amazônia</span>
+            <span data-lang="en" class="hidden">Science in the Amazon</span>
+          </h3>
+          <p>
+            <span data-lang="pt">Use esta seção para conectar sua pesquisa à realidade amazônica, discutindo biodiversidade, saúde pública e educação científica.</span>
+            <span data-lang="en" class="hidden">Use this section to connect your research to the Amazon region, discussing biodiversity, public health and science education.</span>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="section-title">
+        <span data-lang="pt">Contato</span>
+        <span data-lang="en" class="hidden">Contact</span>
+      </h2>
+      <p class="muted" style="margin-bottom: 1rem;">
+        <span data-lang="pt">Use este espaço para facilitar convites para colaborações, palestras e orientação de estudantes.</span>
+        <span data-lang="en" class="hidden">Use this space to make it easy to invite you for collaborations, talks and student supervision.</span>
+      </p>
+      <ul class="contact-list">
+        <li>
+          <strong>Email:</strong> <a href="mailto:seu.email@universidade.br">seu.email@universidade.br</a>
+        </li>
+        <li>
+          <strong>ORCID:</strong> <a href="#" target="_blank" rel="noopener">orcid.org/0000-0000-0000-0000</a>
+        </li>
+        <li>
+          <strong>Google Scholar:</strong> <a href="#" target="_blank" rel="noopener">Google Scholar profile</a>
+        </li>
+        <li>
+          <strong>Lattes:</strong> <a href="#" target="_blank" rel="noopener">Currículo Lattes</a>
+        </li>
+        <li>
+          <strong>GitHub:</strong> <a href="#" target="_blank" rel="noopener">github.com/seu-usuario</a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <span data-lang="pt">© <span id="year-pt"></span> Anderson H. L. Lima. Website minimalista em preto e branco para pesquisa e divulgação científica.</span>
+    <span data-lang="en" class="hidden">© <span id="year-en"></span> Anderson H. L. Lima. Minimal black-and-white website for research and outreach.</span>
+  </footer>
+
+  <script>
+    // Simple language toggle
+    const root = document.documentElement;
+    const langButtons = document.querySelectorAll('.lang-btn');
+
+    function setLang(lang) {
+      root.setAttribute('data-current-lang', lang);
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        const elLang = el.getAttribute('data-lang');
+        el.classList.toggle('hidden', elLang !== lang);
+      });
+      langButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-set-lang') === lang);
+      });
+    }
+
+    langButtons.forEach(btn => {
+      btn.addEventListener('click', () => setLang(btn.getAttribute('data-set-lang')));
+    });
+
+    // Initialize footer year
+    const year = new Date().getFullYear();
+    const yearPt = document.getElementById('year-pt');
+    const yearEn = document.getElementById('year-en');
+    if (yearPt) yearPt.textContent = year;
+    if (yearEn) yearEn.textContent = year;
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href').slice(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          e.preventDefault();
+          window.scrollTo({
+            top: target.offsetTop - 72,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
